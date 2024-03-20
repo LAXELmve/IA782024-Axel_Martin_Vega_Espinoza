@@ -1,0 +1,16 @@
+.ipynb_checkpoints/
+.ipynb_checkpoints
+
+caras/axel/
+caras/brenda/
+caras/dante/
+caras/martin/
+caras/rodrigo/
+
+emociones/feliz/
+emociones/sorprendido/
+emociones/triste/
+
+modelos/
+
+!.gitignore
