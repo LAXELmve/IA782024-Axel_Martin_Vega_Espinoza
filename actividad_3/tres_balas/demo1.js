@@ -109,9 +109,9 @@ function create() {
     moverAtras = juego.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     //
     
-    //nnNetwork =  new synaptic.Architect.Perceptron(5, 6, 6, 5);
+    nnNetwork =  new synaptic.Architect.Perceptron(5, 6, 6, 5);
     //nnNetwork =  new synaptic.Architect.Perceptron(5, 12, 5);
-    nnNetwork =  new synaptic.Architect.Perceptron(5, 3, 3, 3, 5);
+    //nnNetwork =  new synaptic.Architect.Perceptron(5, 3, 3, 3, 5);
     nnEntrenamiento = new synaptic.Trainer(nnNetwork);
 
     //
@@ -409,8 +409,9 @@ function update() {
     }
 
     if( balaD3==false ){
-        bala3.position.x = 780;
-        bala3.position.y = 380;
+        bala3.body.allowGravity = false;
+        /* bala3.position.x = 780;
+        bala3.position.y = 380; */
         bala3.body.velocity.y = 0;
         bala3.body.velocity.x = 0;
         bala3.visible = true;
@@ -418,10 +419,11 @@ function update() {
     }
 
     if( balaD2==false ){
+        bala2.body.allowGravity = false;
         bala2.body.velocity.y = 0;
         bala2.body.velocity.x = 0;
-        bala2.position.x = 780;
-        bala2.position.y = 380;
+        /* bala2.position.x = 780;
+        bala2.position.y = 380; */
         bala2.visible = true;
         tiempoB2++;
     }
@@ -433,10 +435,13 @@ function update() {
     }
 
     if( bala2.position.y >= 310 && bala2.position.x <= 70 && balaD2==true ){
-        bala2.position.x = 750;
-        bala2.position.y = 350;
+        /* bala2.position.x = 750;
+        bala2.position.y = 350; */
+        bala2.position.x = 60;
+        bala2.position.y = 70;
         bala2.body.velocity.y = 0;
         bala2.body.velocity.x = 0;
+        bala2.body.allowGravity = false;
         balaD2=false;
         tiempoB2=0;
         bala2.visible = true;
@@ -445,8 +450,11 @@ function update() {
     if( bala3.position.y >= 380 && bala3.position.x <= 70 && balaD3==true ){
         bala3.body.velocity.y = 0;
         bala3.body.velocity.x = 0;
+        /* bala3.position.x = 600;
+        bala3.position.y = 100; */
         bala3.position.x = 600;
         bala3.position.y = 100;
+        bala3.body.allowGravity = false;
         balaD3=false;
         tiempoB3=0;
         bala3.visible = true;
@@ -481,6 +489,7 @@ function disparo(){
 }
 
 function disparo2(){
+    bala2.body.allowGravity = true;
     velocidadBala2 =  1 * velocidadRandom(1,2);
     bala2.position.x = 60;
     bala2.position.y = 70;
@@ -491,7 +500,7 @@ function disparo2(){
 }
 
 function disparo3(){
-    
+    bala3.body.allowGravity = true;
     var targetX = 60;
     var targetY = h;
     var dx = targetX - bala3.x;
