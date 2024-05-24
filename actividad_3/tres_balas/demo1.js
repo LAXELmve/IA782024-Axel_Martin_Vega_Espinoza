@@ -36,9 +36,8 @@ var despDerTiempo;
 var despAtrTiempo;
 
 var estatusDerecha;
-var estatusIzquierda;
+var estatusNeutral;
 var estatusAtras;
-var estatusInicio;
 //
 //
 var balas;
@@ -110,14 +109,14 @@ function create() {
     moverAtras = juego.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     //
     
-    nnNetwork =  new synaptic.Architect.Perceptron(5, 6, 6, 6);
-    // nnNetwork =  new synaptic.Architect.Perceptron(5, 12, 6);
+    //nnNetwork =  new synaptic.Architect.Perceptron(5, 6, 6, 5);
+    //nnNetwork =  new synaptic.Architect.Perceptron(5, 12, 5);
+    nnNetwork =  new synaptic.Architect.Perceptron(5, 3, 3, 3, 5);
     nnEntrenamiento = new synaptic.Trainer(nnNetwork);
 
     //
     estatusDerecha = 0;
-    estatusIzquierda = 1;
-    estatusInicio = 1;
+    estatusNeutral = 1;
     estatusAtras = 0;
 
     despDerTiempo = 0;
@@ -139,6 +138,7 @@ function create() {
 
 function enRedNeural(){
     nnEntrenamiento.train(datosEntrenamiento, {rate: 0.0003, iterations: 10000, shuffle: true});
+    //nnEntrenamiento.train(datosEntrenamiento, {rate: 0.0005, iterations: 20000, shuffle: true});
 }
 
 
@@ -149,10 +149,9 @@ function datosDeEntrenamiento(param_entrada){
     var aire=Math.round( nnSalida[0]*100 );
     var piso=Math.round( nnSalida[1]*100 );
     var der=Math.round( nnSalida[2]*100 );
-    var izq=Math.round( nnSalida[3]*100 );
+    var ini=Math.round( nnSalida[3]*100 );
     var atras=Math.round( nnSalida[4]*100 );
-    var ini=Math.round( nnSalida[5]*100 );
-    console.log("Valor ","Aire %: "+ aire + " Suelo %: " + piso + " Der %: " + der + " Izquierda %: " + izq + " Atras %: " + atras + " Inicio %: " + ini );
+    console.log("Valor ","Aire %: "+ aire + " Suelo %: " + piso + " Der %: " + der + " Inicio %: " + ini + " Atras %: " + atras);
     return nnSalida[0]>=nnSalida[1];
 }
 
@@ -163,10 +162,9 @@ function datosDeEntrenamiento2(param_entrada){
     var aire=Math.round( nnSalida[0]*100 );
     var piso=Math.round( nnSalida[1]*100 );
     var der=Math.round( nnSalida[2]*100 );
-    var izq=Math.round( nnSalida[3]*100 );
+    var ini=Math.round( nnSalida[3]*100 );
     var atras=Math.round( nnSalida[4]*100 );
-    var ini=Math.round( nnSalida[5]*100 );
-    console.log("Valor ","Aire %: "+ aire + " Suelo %: " + piso + " Der %: " + der + " Izquierda %: " + izq + " Atras %: " + atras + " Inicio %: " + ini );
+    console.log("Valor ","Aire %: "+ aire + " Suelo %: " + piso + " Der %: " + der + " Inicio %: " + ini + " Atras %: " + atras);
     return nnSalida[2]>=nnSalida[3];
 }
 
@@ -177,11 +175,10 @@ function datosDeEntrenamiento3(param_entrada){
     var aire=Math.round( nnSalida[0]*100 );
     var piso=Math.round( nnSalida[1]*100 );
     var der=Math.round( nnSalida[2]*100 );
-    var izq=Math.round( nnSalida[3]*100 );
+    var ini=Math.round( nnSalida[3]*100 );
     var atras=Math.round( nnSalida[4]*100 );
-    var ini=Math.round( nnSalida[5]*100 );
-    console.log("Valor ","Aire %: "+ aire + " Suelo %: " + piso + " Der %: " + der + " Izquierda %: " + izq + " Atras %: " + atras + " Inicio %: " + ini );
-    return nnSalida[4]>=nnSalida[5];
+    console.log("Valor ","Aire %: "+ aire + " Suelo %: " + piso + " Der %: " + der + " Inicio %: " + ini + " Atras %: " + atras);
+    return nnSalida[4]>=nnSalida[3];
 }
 
 
@@ -246,12 +243,11 @@ function resetVariables(){
     bala3.position.y = 100;
     balaD3=false;
     estatusDerecha = 0;
-    estatusIzquierda = 1;
+    estatusNeutral = 1;
     despDerTiempo = 0;
     jugadorGolpeado = false;
     regresandoDer = false;
 
-    estatusInicio = 1;
     estatusAtras = 0;
     despAtrTiempo = 0;
     regresandoAtras = false;
@@ -267,12 +263,11 @@ function saltar(){
 }
 
 function moverseDer(){
-    estatusIzquierda = 0;
+    estatusNeutral = 0;
     estatusDerecha = 1;
     jugador.position.x = 90;
     //jugador.position.x = Phaser.Math.linear(50, 90, 0.7);
     estatusAtras = 0;
-    estatusInicio = 1;
 
     despAtrTiempo = 0;
     despDerTiempo = 0;
@@ -282,12 +277,11 @@ function moverseDer(){
 }
 
 function moverseAtr(){
-    estatusIzquierda = 1;
+    estatusNeutral = 0;
     estatusDerecha = 0;
     jugador.position.x = 0;
 
     estatusAtras = 1;
-    estatusInicio = 0;
 
     despAtrTiempo = 0;
     despDerTiempo = 0;
@@ -338,12 +332,11 @@ function update() {
         jugador.position.x = 50;
         regresandoDer = false;
         estatusDerecha = 0;
-        estatusIzquierda = 1;
+        estatusNeutral = 1;
         despDerTiempo = 0;
 
         regresandoAtras = false;
         estatusAtras = 0;
-        estatusInicio = 1;
         despAtrTiempo = 0;
     }
 
@@ -372,12 +365,11 @@ function update() {
         jugador.position.x = 50;
         regresandoDer = false;
         estatusDerecha = 0;
-        estatusIzquierda = 1;
+        estatusNeutral = 1;
         despDerTiempo = 0;
 
         regresandoAtras = false;
         estatusAtras = 0;
-        estatusInicio = 1;
         despAtrTiempo = 0;
     }
 
@@ -388,7 +380,7 @@ function update() {
         }
     }
 
-    if( modoAuto == true  && (bala3.position.y>200 || bala3.position.x<400) && (estatusAtras==0)) {
+    if( modoAuto == true  && (bala3.position.y>250 || bala3.position.x<250) && (estatusAtras==0)) {
 
         if( datosDeEntrenamiento3( [despBala , velocidadBala, despBala2 , despBala3x, despBala3y] )  ){
             moverseAtr();
@@ -434,7 +426,7 @@ function update() {
         tiempoB2++;
     }
 
-    if( bala.position.x <= 0  ){
+    if( bala.position.x <= 40  ){
         bala.body.velocity.x = 0;
         bala.position.x = w-100;
         balaD=false;
@@ -465,7 +457,7 @@ function update() {
 
         datosEntrenamiento.push({
                 'input' :  [despBala , velocidadBala, despBala2 , despBala3x, despBala3y],
-                'output':  [estatusAire , estatuSuelo , estatusDerecha , estatusIzquierda , estatusAtras , estatusInicio ]
+                'output':  [estatusAire , estatuSuelo , estatusDerecha , estatusNeutral , estatusAtras]
         });
 
         console.log("B1 vx, B2 vy, B3 vx, B3 vy: ",
@@ -475,7 +467,7 @@ function update() {
         despBala + " " +despBala2 + " " + despBala3x+ " " + despBala3y);
 
         console.log("Estatus Aire, Estatus Derecha, Estatus Atras: ",
-            estatusAire + " " +estatusDerecha + " "+ estatusAtras+" ");
+            estatusAire + " " +estatusDerecha + " " +estatusNeutral + " "+ estatusAtras+" ");
    }
 
 }
