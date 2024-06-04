@@ -67,7 +67,7 @@ function preload() {
 function create() {
 
     juego.physics.startSystem(Phaser.Physics.ARCADE);
-    juego.physics.arcade.gravity.y = 800;
+    juego.physics.arcade.gravity.y = 700;
     juego.time.desiredFps = 30;
 
     fondo = juego.add.tileSprite(0, 0, w, h, 'fondo');
@@ -319,7 +319,7 @@ function update() {
         moverseDer();
     }
 
-    if ((despDerTiempo>=12) && (regresandoDer == false) && (estatusDerecha==1)) {
+    if ((despDerTiempo>=16) && (regresandoDer == false) && (estatusDerecha==1)) {
         jugador.position.x = 90;
         regresandoDer = true;
     }
@@ -352,7 +352,7 @@ function update() {
         moverseAtr();
     }
 
-    if ((despAtrTiempo>=12) && (regresandoAtras == false) && (estatusAtras==1)) {
+    if ((despAtrTiempo>=16) && (regresandoAtras == false) && (estatusAtras==1)) {
         jugador.position.x = 0;
         regresandoAtras = true;
     }
@@ -373,14 +373,14 @@ function update() {
         despAtrTiempo = 0;
     }
 
-    if( modoAuto == true  && bala2.position.y>250 && (estatusDerecha==0)) {
+    if( modoAuto == true  && (estatusDerecha==0)) {
 
         if( datosDeEntrenamiento2( [despBala , velocidadBala, despBala2 , despBala3x, despBala3y] )  ){
             moverseDer();
         }
     }
 
-    if( modoAuto == true  && (bala3.position.y>250 || bala3.position.x<250) && (estatusAtras==0)) {
+    if( modoAuto == true  && (estatusAtras==0)) {
 
         if( datosDeEntrenamiento3( [despBala , velocidadBala, despBala2 , despBala3x, despBala3y] )  ){
             moverseAtr();
@@ -434,7 +434,7 @@ function update() {
         balaD=false;
     }
 
-    if( bala2.position.y >= 310 && bala2.position.x <= 70 && balaD2==true ){
+    if( bala2.position.y >= 330 && bala2.position.x <= 70 && balaD2==true ){
         /* bala2.position.x = 750;
         bala2.position.y = 350; */
         bala2.position.x = 60;
@@ -482,15 +482,15 @@ function update() {
 
 
 function disparo(){
-    velocidadBala =  -1 * velocidadRandom(300,800);
+    velocidadBala =  -1 * velocidadRandom(300,500);
     bala.body.velocity.y = 0 ;
     bala.body.velocity.x = velocidadBala ;
     balaD=true;
 }
 
 function disparo2(){
-    bala2.body.allowGravity = true;
-    velocidadBala2 =  1 * velocidadRandom(1,2);
+    bala2.body.allowGravity = false;
+    velocidadBala2 =  1 * velocidadRandom(150,151);
     bala2.position.x = 60;
     bala2.position.y = 70;
     bala2.body.velocity.x = 0;
@@ -500,18 +500,21 @@ function disparo2(){
 }
 
 function disparo3(){
-    bala3.body.allowGravity = true;
+    bala3.body.allowGravity = false;
     var targetX = 60;
     var targetY = h;
     var dx = targetX - bala3.x;
     var dy = targetY - bala3.y;
     var angle = Math.atan2(dy, dx);
+    var velocidadC = 630
     bala3.visible = true;
-    velocidadBala3y = 1 * velocidadRandom(1,2);
-    velocidadBala3x = -640;
+    velocidadBala3y = 1 * velocidadC
+    // velocidadBala3x = -640;
+    velocidadBala3x = 1 * velocidadC
     bala3.position.x = 600;
     bala3.position.y = 100;
-    bala3.body.velocity.x = velocidadBala3x;
+    // bala3.body.velocity.x = velocidadBala3x;
+    bala3.body.velocity.x = Math.cos(angle) * velocidadBala3x;
     bala3.body.velocity.y = Math.sin(angle) * velocidadBala3y;
     balaD3=true;
 }
