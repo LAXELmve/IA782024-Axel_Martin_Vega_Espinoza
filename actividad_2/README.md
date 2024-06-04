@@ -52,7 +52,7 @@ wally_apparitions = wally_cascade.detectMultiScale(gray, scaleFactor=1.01, minNe
 Cuando se hizo la revisión de esta actividad por parte del profesor, se puso a prueba el clasificador en los siguientes escenarios:    
 
 #### Caso 3: Escenario 4
-![Resultado en el cuarto escenario](./outputs\wally_detected_19.jpg)
+![Resultado en el cuarto escenario](./outputs/wally_detected_19.jpg)
 
 #### Caso 4: Escenario 5
-![Resultado en el quinto escenario](./outputs\wally_detected_2.jpg)
+![Resultado en el quinto escenario](./outputs/wally_detected_2.jpg)
