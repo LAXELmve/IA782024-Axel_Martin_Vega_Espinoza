@@ -48,6 +48,6 @@ Se entronó con una tasa de aprendizaje (rate) de 0.0003 unidades, 10000 iteraci
 
 A continuación se muestra uno de los mejores resultados conseguidos en Modo Auto:
 
-![](./evidencia/recorte1.mp4)
+https://github.com/LAXELmve/IA782024-Axel_Martin_Vega_Espinoza/assets/111810619/3623188e-d83f-4071-a1f6-deb83c5510d3
 
 Se logró conseguir alrededor de 400 entradas de datos, lo que resulto en un modelo que replicaba de buena manera los movimientos del jugador, y de hecho, lograba sobrevivir mucho más tiempo que el logrado de manera manual.
