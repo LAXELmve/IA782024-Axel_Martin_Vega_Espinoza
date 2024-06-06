@@ -4,7 +4,7 @@
 
 Para esta versión del juego desarrollado con el entorno de programación Phaser, el jugador se enfrenta al siguiente desafío: evitar ser impactados por tres proyectiles que se mueven en direcciones diferentes. Uno de los proyectiles se desplaza verticalmente, otro lo hace horizontalmente, mientras que el tercero lo hace de manera diagonal. El jugador debe utilizar saltos y movimientos laterales hacia la derecha e izquierda para esquivar los obstáculos y mantenerse con vida.
 
-Pero eso no es todo. El juego también ofrece una opción de juego automático. En esta modalidad, se emplea un Perceptrón, un modelo de aprendizaje automático. El Perceptrón utiliza los datos de la última partida para desarrollar un modelo capaz de jugar de forma independiente. ¡Es fascinante ver cómo la inteligencia artificial se adapta y mejora con cada intento!
+Pero eso no es todo. El juego también ofrece una opción de juego automático. En esta modalidad, se emplea un Perceptrón, un modelo de aprendizaje automático. El Perceptrón utiliza los datos de la última partida para desarrollar un modelo capaz de jugar de forma independiente.
 
 
 ## Desarrollo
