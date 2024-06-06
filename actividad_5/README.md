@@ -47,12 +47,12 @@ Se entronó con una tasa de aprendizaje (rate) de 0.0003 unidades, 10000 iteraci
 
 A continuación se muestra uno de los mejores resultados conseguidos en Modo Auto:
 
-
+https://github.com/LAXELmve/IA782024-Axel_Martin_Vega_Espinoza/assets/111810619/ade0c66c-729d-49be-83d9-31d82dbb24b2
 
 En este intento se lograron agregar 354 registros para el entrenamiento, lo que resulto en un modelo que replicaba, de manera algo cuestionable, los movimientos del jugador. El gran detalle radica en que, como muchos otros intentos, tiende a desplazarse insistentemente hacia la izquierda.
 
 Hay otros casos en los que lo único que logra aprender es a desplazarse hacia el lado izquierdo, lo cual se puede apreciar en el siguiente video.
 
+https://github.com/LAXELmve/IA782024-Axel_Martin_Vega_Espinoza/assets/111810619/84f451c7-005a-480e-bb0a-94b6ea8ba58a
 
-
-Esto ultimo deja muy en claro que aún no se llega a la mejor configuración posible para la red neuronal.
+Esto último deja muy en claro que aún no se llega a la mejor configuración posible para la red neuronal.
