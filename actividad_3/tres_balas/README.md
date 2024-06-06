@@ -53,10 +53,10 @@ Se entronó con una tasa de aprendizaje (rate) de 0.0003 unidades, 10000 iteraci
 
 A continuación se muestra uno de los mejores resultados conseguidos en Modo Auto:
 
-<video src="./evidencia/recorte.mp4" controls ></video>
+<video src="./evidencia/recorte.mp4" width="1080"  controls ></video>
 
 En este intento se lograron agregar 306 registros para el entrenamiento, lo que resulto en un modelo que replicaba casi de manera aceptable los movimientos del jugador, ya que solo se limitaba a saltar y desplazarse hacia atrás. El desplazamiento hacia adelante (izquierda) se ignoraba, posiblemente por la poca cantidad de registros que lo contenían, y también, por los parámetros de la red neuronal.
 
 Sin embargo, se llegaron a presentar otros casos en los que incluso con unos pocos más registros de entrada el desempeño era peor (véase el último video), por lo que aún no se llega a la mejor configuración posible.
 
-<video src="./evidencia/recorte2.mp4" controls ></video>
+<video src="./evidencia/recorte2.mp4" width="1080" controls ></video>
